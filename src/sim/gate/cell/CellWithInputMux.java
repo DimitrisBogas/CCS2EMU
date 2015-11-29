@@ -1,5 +1,7 @@
 package sim.gate.cell;
 
+import sim.gate.cell.gate.Gate;
+
 public class CellWithInputMux {
     private Cell cell;
     private Mux mux1;
@@ -21,8 +23,12 @@ public class CellWithInputMux {
         return output();
     }
 
-    public void selectGate(int gateType) {
-        cell.selectGate(gateType);
+    public void selectGate(int gateTypeId) {
+        cell.selectGate(gateTypeId);
+    }
+
+    public void selectGate(Gate gateClass) {
+        cell.selectGate(gateClass);
     }
 
     public void mux1SetInputs(boolean[] inputs) {

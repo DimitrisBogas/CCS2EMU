@@ -1,6 +1,7 @@
 package sim.gate.playground;
 
 import sim.gate.cell.CellWithInputMux;
+import sim.gate.cell.gate.EGate;
 
 public class TestRsLatch implements ITest {
     CellWithInputMux[][] cell;
@@ -68,25 +69,25 @@ public class TestRsLatch implements ITest {
             }
         }
 
-        cell[0][0].selectGate(10);
+        cell[0][0].selectGate(EGate.TransferA.getGate());
         cell[0][0].mux1SetSelectLinesNumber(1);
         cell[0][0].mux2SetSelectLinesNumber(1);
         cell[0][0].mux1SetSelectedInput(1);
         cell[0][0].mux2SetSelectedInput(0);
 
-        cell[1][0].selectGate(10);
+        cell[1][0].selectGate(EGate.TransferA.getGate());
         cell[1][0].mux1SetSelectLinesNumber(1);
         cell[1][0].mux2SetSelectLinesNumber(1);
         cell[1][0].mux1SetSelectedInput(0);
         cell[1][0].mux2SetSelectedInput(0);
 
-        cell[0][1].selectGate(1);
+        cell[0][1].selectGate(EGate.Nor.getGate());
         cell[0][1].mux1SetSelectLinesNumber(1);
         cell[0][1].mux2SetSelectLinesNumber(1);
         cell[0][1].mux1SetSelectedInput(0);
         cell[0][1].mux2SetSelectedInput(0);
 
-        cell[1][1].selectGate(1);
+        cell[1][1].selectGate(EGate.Nor.getGate());
         cell[1][1].mux1SetSelectLinesNumber(1);
         cell[1][1].mux2SetSelectLinesNumber(1);
         cell[1][1].mux1SetSelectedInput(0);

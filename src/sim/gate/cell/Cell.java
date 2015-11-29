@@ -8,23 +8,23 @@ public class Cell {
     protected Gate gate;
 
     public Cell() {
-        selectGate(EGate.Always0);
+        selectGate(EGate.Always0.getGate());
     }
 
     public Cell(int gateTypeId) {
         selectGate(gateTypeId);
     }
 
-    public Cell(EGate gateName) {
-        selectGate(gateName);
+    public Cell(Gate gateClass) {
+        selectGate(gateClass);
     }
 
     public void selectGate(int gateTypeId) {
-        gate = GateFactory.createGate(gateTypeId);
+        gate = GateFactory.createGateWithId(gateTypeId);
     }
 
-    public void selectGate(EGate gateName) {
-        gate = GateFactory.createGate(gateName);
+    public void selectGate(Gate gateClass) {
+        gate = gateClass;
     }
 
     public final boolean getInputA() {
@@ -45,6 +45,21 @@ public class Cell {
 
     public final boolean getOutput() {
         return gate.getOutput();
+    }
+
+    public Gate getGate() {
+        return gate;
+    }
+
+    public int getGateId() {
+        int gateTypeId = -1;
+        for (EGate gate : EGate.values()) {
+            if (gate.getGate() == this.gate) {
+                gateTypeId = gate.ordinal();
+                break;
+            }
+        }
+        return gateTypeId;
     }
 
     @Override
