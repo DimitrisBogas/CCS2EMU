@@ -2,7 +2,6 @@ package sim.gate.playground;
 
 import sim.gate.cell.Cell;
 import sim.gate.cell.CellWithInputMux;
-import sim.gate.cell.Mux;
 
 public class TestCell implements ITest {
 
@@ -23,7 +22,7 @@ public class TestCell implements ITest {
         int rows = 3;
         int cols = 3;
         CellWithInputMux[][] cell = new CellWithInputMux[rows][cols];
-        for(int i = 0; i < rows; i++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 cell[i][j] = new CellWithInputMux();
             }

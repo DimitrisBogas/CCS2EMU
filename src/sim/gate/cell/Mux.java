@@ -6,10 +6,11 @@ public class Mux {
     private int maxInputs;
     private boolean[] inputs;
 
-    public Mux () {
+    public Mux() {
         setSelectLinesNumber(1); // 1 line = 2 inputs
         setSelectedInput(0); // select first input
     }
+
     public Mux(int selectLinesNumber) {
         setSelectLinesNumber(selectLinesNumber);
         setupMaxInputs();
@@ -20,7 +21,7 @@ public class Mux {
         setupMaxInputs();
     }
 
-    public boolean getOutput () {
+    public boolean getOutput() {
         return inputs[this.selectedInput];
     }
 
@@ -32,41 +33,53 @@ public class Mux {
         this.inputs = inputs;
     }
 
-    public int getOutput (int[] inputs, int selectedInput) {
-        if (selectedInput > this.maxInputs -1 || selectedInput < 0) {
+    public int getOutput(int[] inputs, int selectedInput) {
+        if (selectedInput > this.maxInputs - 1 || selectedInput < 0) {
             throw new ArrayIndexOutOfBoundsException();
         }
         return inputs[selectedInput];
     }
 
-    public int getMaxInputs () {
+    public int getMaxInputs() {
         return maxInputs;
-    }
-
-    public void setSelectedInput(int selectedInput) {
-        if (selectedInput > this.maxInputs -1 || selectedInput < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        this.selectedInput = selectedInput;
     }
 
     public int getSelectedInput() {
         return selectedInput;
     }
 
-    private void setupMaxInputs () {
-        if(this.selectLinesNumber <= 0 ) {
+    public void setSelectedInput(int selectedInput) {
+        if (selectedInput > this.maxInputs - 1 || selectedInput < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        this.selectedInput = selectedInput;
+    }
+
+    private void setupMaxInputs() {
+        if (this.selectLinesNumber <= 0) {
             throw new IndexOutOfBoundsException();
         }
         int base2 = 2;
         this.maxInputs = (int) Math.pow(base2, this.selectLinesNumber);
         initializeInputs();
     }
+
     private void initializeInputs() { // check if in reinitialization the lost of state of inputs create any trouble
         inputs = new boolean[maxInputs];
-        for(int i = 0; i < maxInputs; i++) {
+        for (int i = 0; i < maxInputs; i++) {
             inputs[i] = false;
         }
+    }
+
+    @Override
+    public String toString() {
+        String str = new String();
+        for (int i = 0; i < inputs.length; i++) {
+            str += "inp[" + i + "]:" + inputs[i] + ",  ";
+        }
+        str += "sel:" + selectedInput + ",  out:" + getOutput();
+
+        return str;
     }
 
 

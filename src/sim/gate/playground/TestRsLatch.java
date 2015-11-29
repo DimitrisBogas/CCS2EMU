@@ -2,12 +2,10 @@ package sim.gate.playground;
 
 import sim.gate.cell.CellWithInputMux;
 
-import java.lang.reflect.Method;
-
 public class TestRsLatch implements ITest {
+    CellWithInputMux[][] cell;
     private int rows;
     private int cols;
-    CellWithInputMux[][] cell;
 
     @Override
     public void execute() {
@@ -15,7 +13,7 @@ public class TestRsLatch implements ITest {
     }
 
     private void scenario1() {
-        connectGates();
+        configureCircuit();
 
         boolean[][] testInput = {
                 //r     s
@@ -27,10 +25,10 @@ public class TestRsLatch implements ITest {
                 {true, true}
         };
         boolean[] result;
-        for(int i = 0; i < testInput.length; i++) {
+        for (int i = 0; i < testInput.length; i++) {
             boolean r = testInput[i][0];
             boolean s = testInput[i][1];
-            for(int j = 0; j < 4; j++) {
+            for (int j = 0; j < 4; j++) {
                 System.out.println(i + ") S:" + s + "  " + "R:" + r);
                 result = testCircuit(r, s);
                 System.out.println("   Q:" + result[0] + "   Q':" + result[1] + "\n");
@@ -60,11 +58,11 @@ public class TestRsLatch implements ITest {
         return result;
     }
 
-    private void connectGates() {
+    private void configureCircuit() {
         int rows = 2;
         int cols = 2;
         cell = new CellWithInputMux[rows][cols];
-        for(int i = 0; i < rows; i++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 cell[i][j] = new CellWithInputMux();
             }

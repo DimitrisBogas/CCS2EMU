@@ -20,7 +20,7 @@ public class Mux2to1Boolean {
     }
 
     public boolean getOutput(boolean inputA, boolean inputB) {
-        return selectPin?inputB:inputA;
+        return selectPin ? inputB : inputA;
     }
 
 }

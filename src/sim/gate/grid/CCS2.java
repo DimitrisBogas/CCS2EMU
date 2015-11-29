@@ -20,14 +20,15 @@ public class CCS2 implements ISimGrid {
         initializeLastColumn();
     }
 
-    private void initializeFirstColumn () {
-
-    }
-    private void initializeMiddleColumns () {
+    private void initializeFirstColumn() {
 
     }
 
-    private void initializeLastColumn () {
+    private void initializeMiddleColumns() {
+
+    }
+
+    private void initializeLastColumn() {
 
     }
 }

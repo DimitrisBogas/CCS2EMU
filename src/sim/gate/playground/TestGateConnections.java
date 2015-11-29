@@ -1,9 +1,9 @@
 package sim.gate.playground;
 
-import sim.gate.cell.Gate;
-import sim.gate.cell.gate.And;
-import sim.gate.cell.gate.NotA;
-import sim.gate.cell.gate.Or;
+import sim.gate.cell.gate.Gate;
+import sim.gate.cell.gate.type.And;
+import sim.gate.cell.gate.type.NotA;
+import sim.gate.cell.gate.type.Or;
 
 public class TestGateConnections implements ITest {
 
@@ -18,7 +18,7 @@ public class TestGateConnections implements ITest {
         Gate[] not = new NotA[6];
 
         System.out.println("initialize");
-        for(int i = 0; i < not.length; i++) {
+        for (int i = 0; i < not.length; i++) {
             not[i] = new NotA();
             System.out.println(not[i]);
         }
@@ -27,7 +27,7 @@ public class TestGateConnections implements ITest {
         System.out.println(and1);
 
 
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
 //            and1.setInputA(not[2].getOutput());
 //            and1.setInputB(not[5].getOutput());
 //            not[2].setInputA(not[1].getOutput());
@@ -66,7 +66,7 @@ public class TestGateConnections implements ITest {
         System.out.println(not2);
         System.out.println(not3);
 
-        for(int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
             not1.setInputA(not3.getOutput());
             not2.setInputA(not1.getOutput());
             not3.setInputA(not2.getOutput());

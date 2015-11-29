@@ -14,7 +14,7 @@ public class TestGrid implements ITest {
         Mux[][] mux = new Mux[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if(i > 0) {
+                if (i > 0) {
                     mux[i][j] = new Mux(i);
                 } else {
                     mux[i][j] = new Mux(1);

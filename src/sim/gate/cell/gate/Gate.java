@@ -1,4 +1,4 @@
-package sim.gate.cell;
+package sim.gate.cell.gate;
 
 public abstract class Gate {
     protected boolean inputA;
@@ -10,6 +10,7 @@ public abstract class Gate {
         inputB = false;
         output = false;
     }
+
     protected abstract boolean internalFunction();
 
     public final boolean getInputA() {
@@ -36,9 +37,9 @@ public abstract class Gate {
     @Override
     public String toString() {
         String className = getClass().getSimpleName();
-        String inpA = "A:" + (inputA?"1":"0");
-        String inpB = "B:" + (inputB?"1":"0");
-        String out = "O:" + (getOutput()?"1":"0");
+        String inpA = "A:" + (inputA ? "1" : "0");
+        String inpB = "B:" + (inputB ? "1" : "0");
+        String out = "O:" + (getOutput() ? "1" : "0");
         String n = "\n";
         String s = "  ";
 

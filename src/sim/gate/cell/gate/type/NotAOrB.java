@@ -1,6 +1,6 @@
-package sim.gate.cell.gate;
+package sim.gate.cell.gate.type;
 
-import sim.gate.cell.Gate;
+import sim.gate.cell.gate.Gate;
 
 public class NotAOrB extends Gate {
     @Override
