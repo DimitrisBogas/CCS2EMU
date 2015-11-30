@@ -30,8 +30,9 @@ public abstract class Gate {
     }
 
     public final boolean getOutput() {
+        boolean previousOutput = output;
         output = internalFunction();
-        return output;
+        return previousOutput;
     }
 
     @Override

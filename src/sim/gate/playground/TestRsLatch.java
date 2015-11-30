@@ -18,6 +18,7 @@ public class TestRsLatch implements ITest {
 
         boolean[][] testInput = {
                 //r     s
+                {true, false},
                 {false, false},
                 {false, true},
                 {true, false},
@@ -48,6 +49,8 @@ public class TestRsLatch implements ITest {
         cell[1][0].mux2SetInputs(new boolean[]{r, s});
 
         cell[0][1].mux1SetInputs(new boolean[]{cell[1][1].getOutput(), cell[0][0].getOutput()});
+        //cell[1][1].mux1SetInputs(new boolean[]{cell[0][1].getOutput(), cell[1][0].getOutput()});
+        //cell[0][1].mux1SetInputs(new boolean[]{cell[1][1].getOutput(), cell[0][0].getOutput()});
         cell[0][1].mux2SetInputs(new boolean[]{cell[1][0].getOutput(), cell[1][0].getOutput()});
 
         cell[1][1].mux1SetInputs(new boolean[]{cell[0][1].getOutput(), cell[1][0].getOutput()});
@@ -81,13 +84,13 @@ public class TestRsLatch implements ITest {
         cell[1][0].mux1SetSelectedInput(0);
         cell[1][0].mux2SetSelectedInput(0);
 
-        cell[0][1].selectGate(EGate.Nor.getGate());
+        cell[0][1].selectGate(EGate.Nand.getGate());
         cell[0][1].mux1SetSelectLinesNumber(1);
         cell[0][1].mux2SetSelectLinesNumber(1);
         cell[0][1].mux1SetSelectedInput(0);
         cell[0][1].mux2SetSelectedInput(0);
 
-        cell[1][1].selectGate(EGate.Nor.getGate());
+        cell[1][1].selectGate(EGate.Nand.getGate());
         cell[1][1].mux1SetSelectLinesNumber(1);
         cell[1][1].mux2SetSelectLinesNumber(1);
         cell[1][1].mux1SetSelectedInput(0);
