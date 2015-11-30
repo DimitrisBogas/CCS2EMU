@@ -18,7 +18,6 @@ public class TestRsLatch implements ITest {
 
         boolean[][] testInput = {
                 //r     s
-                {true, false},
                 {false, false},
                 {false, true},
                 {true, false},
@@ -30,14 +29,15 @@ public class TestRsLatch implements ITest {
         for (int i = 0; i < testInput.length; i++) {
             boolean r = testInput[i][0];
             boolean s = testInput[i][1];
-            for (int j = 0; j < 4; j++) {
-                System.out.println(i + ") S:" + s + "  " + "R:" + r);
-                result = testCircuit(r, s);
-                System.out.println("   Q:" + result[0] + "   Q':" + result[1] + "\n");
-            }
-            System.out.println("\n");
-        }
 
+            for (int j = 0; j < 3; j++) {
+                System.out.print(i + ") S:" + s + "  " + "R:" + r);
+
+                result = testCircuit(r, s);
+                System.out.println("\t  Q:" + result[0] + "   Q':" + result[1]);
+            }
+            System.out.println();
+        }
 
     }
 
@@ -49,16 +49,14 @@ public class TestRsLatch implements ITest {
         cell[1][0].mux2SetInputs(new boolean[]{r, s});
 
         cell[0][1].mux1SetInputs(new boolean[]{cell[1][1].getOutput(), cell[0][0].getOutput()});
-        //cell[1][1].mux1SetInputs(new boolean[]{cell[0][1].getOutput(), cell[1][0].getOutput()});
-        //cell[0][1].mux1SetInputs(new boolean[]{cell[1][1].getOutput(), cell[0][0].getOutput()});
         cell[0][1].mux2SetInputs(new boolean[]{cell[1][0].getOutput(), cell[1][0].getOutput()});
 
         cell[1][1].mux1SetInputs(new boolean[]{cell[0][1].getOutput(), cell[1][0].getOutput()});
         cell[1][1].mux2SetInputs(new boolean[]{cell[0][0].getOutput(), cell[0][0].getOutput()});
 
         boolean result[] = new boolean[2];
-        result[0] = cell[0][1].getOutput();
-        result[1] = cell[1][1].getOutput();
+        result[0] = cell[1][1].getOutput(); // q
+        result[1] = cell[0][1].getOutput(); // q'
         return result;
     }
 
@@ -84,13 +82,13 @@ public class TestRsLatch implements ITest {
         cell[1][0].mux1SetSelectedInput(0);
         cell[1][0].mux2SetSelectedInput(0);
 
-        cell[0][1].selectGate(EGate.Nand.getGate());
+        cell[0][1].selectGate(EGate.Nor.getGate());
         cell[0][1].mux1SetSelectLinesNumber(1);
         cell[0][1].mux2SetSelectLinesNumber(1);
         cell[0][1].mux1SetSelectedInput(0);
         cell[0][1].mux2SetSelectedInput(0);
 
-        cell[1][1].selectGate(EGate.Nand.getGate());
+        cell[1][1].selectGate(EGate.Nor.getGate());
         cell[1][1].mux1SetSelectLinesNumber(1);
         cell[1][1].mux2SetSelectLinesNumber(1);
         cell[1][1].mux1SetSelectedInput(0);

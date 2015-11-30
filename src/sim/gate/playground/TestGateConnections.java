@@ -11,7 +11,7 @@ public class TestGateConnections implements ITest {
     public void execute() {
         //scenario1();
         //scenario2();
-        scenario3();
+        scenario2();
     }
 
     private void scenario3() {
@@ -66,7 +66,7 @@ public class TestGateConnections implements ITest {
         System.out.println(not2);
         System.out.println(not3);
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 20; i++) {
             not1.setInputA(not3.getOutput());
             not2.setInputA(not1.getOutput());
             not3.setInputA(not2.getOutput());

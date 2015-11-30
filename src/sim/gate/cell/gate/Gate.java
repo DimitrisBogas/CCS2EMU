@@ -19,6 +19,7 @@ public abstract class Gate {
 
     public final void setInputA(boolean inputA) {
         this.inputA = inputA;
+        getOutput();
     }
 
     public final boolean getInputB() {
@@ -27,12 +28,16 @@ public abstract class Gate {
 
     public final void setInputB(boolean inputB) {
         this.inputB = inputB;
+        getOutput();
     }
 
     public final boolean getOutput() {
+        final boolean activateDelay = true;
+
         boolean previousOutput = output;
         output = internalFunction();
-        return previousOutput;
+
+        return activateDelay ? previousOutput : output;
     }
 
     @Override
@@ -40,11 +45,11 @@ public abstract class Gate {
         String className = getClass().getSimpleName();
         String inpA = "A:" + (inputA ? "1" : "0");
         String inpB = "B:" + (inputB ? "1" : "0");
-        String out = "O:" + (getOutput() ? "1" : "0");
+        String out = "O:" + (output ? "1" : "0");
         String n = "\n";
         String s = "  ";
 
-        return className + n + inpA + s + inpB + s + out + n;
+        return className + n + inpA + s + inpB + s + out;// + n;
     }
 
 }
