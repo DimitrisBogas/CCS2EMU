@@ -13,7 +13,6 @@ public class Mux {
 
     public Mux(int selectLinesNumber) {
         setSelectLinesNumber(selectLinesNumber);
-        setupMaxInputs();
     }
 
     public void setSelectLinesNumber(int selectLinesNumber) {
@@ -33,15 +32,12 @@ public class Mux {
         this.inputs = inputs;
     }
 
-    public int getOutput(int[] inputs, int selectedInput) {
-        if (selectedInput > this.maxInputs - 1 || selectedInput < 0) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        return inputs[selectedInput];
-    }
-
     public int getMaxInputs() {
         return maxInputs;
+    }
+
+    public void setMaxInputs(int maxInputs) {
+        this.maxInputs = maxInputs;
     }
 
     public int getSelectedInput() {
