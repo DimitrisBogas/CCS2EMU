@@ -3,7 +3,7 @@ package sim.gate.playground;
 import sim.gate.cell.CellWithInputMux;
 import sim.gate.cell.gate.EGate;
 
-public class TestRsLatch implements ITest {
+public class TestRsLatchWithNor implements ITest {
     CellWithInputMux[][] cell;
     private int rows;
     private int cols;
@@ -18,11 +18,10 @@ public class TestRsLatch implements ITest {
 
         boolean[][] testInput = {
                 //r     s
-                {false, false},
                 {false, true},
+                {false, false},
                 {true, false},
                 {false, false},
-                {false, true},
                 {true, true}
         };
         boolean[] result;
@@ -55,8 +54,8 @@ public class TestRsLatch implements ITest {
         cell[1][1].mux2SetInputs(new boolean[]{cell[0][0].getOutput(), cell[0][0].getOutput()});
 
         boolean result[] = new boolean[2];
-        result[0] = cell[1][1].getOutput(); // q
-        result[1] = cell[0][1].getOutput(); // q'
+        result[0] = cell[0][1].getOutput(); // q
+        result[1] = cell[1][1].getOutput(); // q'
         return result;
     }
 
