@@ -1,7 +1,9 @@
 package sim.gate.grid;
 
 public interface ISimGrid {
+
     void setupGridDimensions(int rows, int cols);
 
-    void initializeGrid() throws Exception;
+    void initializeGrid();
+    //boolean[] emulate ();
 }

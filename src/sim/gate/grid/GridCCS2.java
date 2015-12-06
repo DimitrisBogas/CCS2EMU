@@ -13,7 +13,7 @@ public class GridCCS2 implements ISimGrid {
         cols = 0;
     }
 
-    public GridCCS2(int rows, int cols) throws Exception {
+    public GridCCS2(int rows, int cols) {
         setupGridDimensions(rows, cols);
         initializeGrid();
     }
@@ -22,23 +22,23 @@ public class GridCCS2 implements ISimGrid {
     public void setupGridDimensions(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
+        initializeGrid();
     }
 
     @Override
-    public void initializeGrid() throws Exception {
+    public void initializeGrid() {
         initializeArray();
-        configureGrid();
+        //configureGrid();
     }
 
     private void configureGrid() {
         // TODO: 2/12/15
     }
 
-    private void initializeArray() throws Exception {
-        if (!isDimensionSet()) {
-            throw new Exception("cols and rows parameters is not set.");
-        }
+    private void initializeArray() {
+        assert (isDimensionSet());
 
+        cell = new CellWithInputMux[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 cell[i][j] = new CellWithInputMux();

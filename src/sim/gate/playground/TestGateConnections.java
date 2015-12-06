@@ -28,14 +28,6 @@ public class TestGateConnections implements ITest {
 
 
         for (int i = 0; i < 4; i++) {
-//            and1.setInputA(not[2].getOutput());
-//            and1.setInputB(not[5].getOutput());
-//            not[2].setInputA(not[1].getOutput());
-//            not[1].setInputA(not[0].getOutput());
-//            not[0].setInputA(not[2].getOutput());
-//            not[5].setInputA(not[4].getOutput());
-//            not[4].setInputA(not[3].getOutput());
-//            not[3].setInputA(not[0].getOutput());
             not[0].setInputA(not[2].getOutput());
             not[1].setInputA(not[0].getOutput());
             not[3].setInputA(not[0].getOutput());

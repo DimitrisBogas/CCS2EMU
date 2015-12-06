@@ -26,8 +26,8 @@ public class TestRsLatchWithNand implements ITest {
         };
         boolean[] result;
         for (int i = 0; i < testInput.length; i++) {
-            boolean r = testInput[i][0];
-            boolean s = testInput[i][1];
+            boolean s = testInput[i][0];
+            boolean r = testInput[i][1];
 
             for (int j = 0; j < 3; j++) {
                 System.out.print(i + ") S:" + s + "  " + "R:" + r);
@@ -54,7 +54,7 @@ public class TestRsLatchWithNand implements ITest {
         cell[1][1].mux2SetInputs(new boolean[]{cell[0][0].getOutput(), cell[0][0].getOutput()});
 
         boolean result[] = new boolean[2];
-        result[1] = cell[0][1].getOutput(); // q  //thisd invert because the input is invert
+        result[1] = cell[0][1].getOutput(); // q
         result[0] = cell[1][1].getOutput(); // q'
         return result;
     }
@@ -72,8 +72,8 @@ public class TestRsLatchWithNand implements ITest {
         cell[0][0].selectGate(EGate.TransferA.getGate());
         cell[0][0].mux1SetSelectLinesNumber(1);
         cell[0][0].mux2SetSelectLinesNumber(1);
-        cell[0][0].mux1SetSelectedInput(0); //s
-        cell[0][0].mux2SetSelectedInput(1);
+        cell[0][0].mux1SetSelectedInput(1);
+        cell[0][0].mux2SetSelectedInput(0);
 
         cell[1][0].selectGate(EGate.TransferA.getGate());
         cell[1][0].mux1SetSelectLinesNumber(1);

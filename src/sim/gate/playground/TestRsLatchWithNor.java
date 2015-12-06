@@ -17,17 +17,17 @@ public class TestRsLatchWithNor implements ITest {
         configureCircuit();
 
         boolean[][] testInput = {
-                //r     s
-                {false, true},
-                {false, false},
+                //s     r
                 {true, false},
+                {false, false},
+                {false, true},
                 {false, false},
                 {true, true}
         };
         boolean[] result;
         for (int i = 0; i < testInput.length; i++) {
-            boolean r = testInput[i][0];
-            boolean s = testInput[i][1];
+            boolean s = testInput[i][0];
+            boolean r = testInput[i][1];
 
             for (int j = 0; j < 3; j++) {
                 System.out.print(i + ") S:" + s + "  " + "R:" + r);

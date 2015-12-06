@@ -5,8 +5,9 @@ public class InputValidator {
     private int gridRows;
     private int gridCols;
     private int outputs;
-    private int expectedArraySize;
     private byte[] inputArray;
+
+    private int expectedArraySize;
 
 
     //validates:
