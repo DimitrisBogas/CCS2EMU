@@ -5,7 +5,6 @@ public class Mux {
     private int selectLinesNumber;
     private int maxInputs;
     private boolean[] inputs;
-
     public Mux() {
         setSelectLinesNumber(1); // 1 line = 2 inputs
         setSelectedInput(0); // select first input
@@ -13,6 +12,10 @@ public class Mux {
 
     public Mux(int selectLinesNumber) {
         setSelectLinesNumber(selectLinesNumber);
+    }
+
+    public int getSelectLinesNumber() {
+        return selectLinesNumber;
     }
 
     public void setSelectLinesNumber(int selectLinesNumber) {
@@ -69,7 +72,7 @@ public class Mux {
 
     @Override
     public String toString() {
-        String str = new String();
+        String str = "";
         for (int i = 0; i < inputs.length; i++) {
             str += "inp[" + i + "]:" + inputs[i] + ",  ";
         }

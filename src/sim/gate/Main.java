@@ -6,6 +6,7 @@ import sim.gate.playground.TestCCS2;
 public class Main {
 
     public static void main(String[] args) {
+
         // Emulator emulator = new EmulatorCCS2();
 
         ITest test = new TestCCS2();//TestCell();//TestGateConnections();

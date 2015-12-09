@@ -6,11 +6,14 @@ public class CellWithInputMux {
     private Cell cell;
     private Mux mux1;
     private Mux mux2;
-
     public CellWithInputMux() {
         cell = new Cell();
         mux1 = new Mux();
         mux2 = new Mux();
+    }
+
+    public Cell getCell() {
+        return cell;
     }
 
     private boolean output() {
@@ -61,6 +64,22 @@ public class CellWithInputMux {
 
     public void mux2SetSelectLinesNumber(int selectLinesNumber) {
         mux2.setSelectLinesNumber(selectLinesNumber);
+    }
+
+    public int mux1GetSelectLinesNumber() {
+        return mux1.getSelectLinesNumber();
+    }
+
+    public int mux2GetSelectLinesNumber() {
+        return mux2.getSelectLinesNumber();
+    }
+
+    public int mux1GetSelectedInput() {
+        return mux1.getSelectedInput();
+    }
+
+    public int mux2GetSelectedInput() {
+        return mux2.getSelectedInput();
     }
 
     public boolean mux1GetOutput() {

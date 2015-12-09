@@ -7,6 +7,7 @@ public class GridCCS2 implements ISimGrid {
     private int rows;
     private int cols;
     private CellWithInputMux[][] cell;
+    private CCS2Configuration inputCircuit;
 
     public GridCCS2() {
         rows = 0;
@@ -15,24 +16,36 @@ public class GridCCS2 implements ISimGrid {
 
     public GridCCS2(int rows, int cols) {
         setupGridDimensions(rows, cols);
-        initializeGrid();
+        //initializeGrid();
+    }
+
+    public CCS2Configuration getInputCircuit() {
+        return inputCircuit;
+    }
+
+    public void setInputCircuit(CCS2Configuration inputCircuit) {
+        this.inputCircuit = inputCircuit;
     }
 
     @Override
     public void setupGridDimensions(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        initializeGrid();
+        //initializeGrid();
     }
 
     @Override
     public void initializeGrid() {
         initializeArray();
-        //configureGrid();
+        configureGrid();
     }
 
     private void configureGrid() {
-        // TODO: 2/12/15
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                cell[i][j] = inputCircuit.cell.iterator().next();
+            }
+        }
     }
 
     private void initializeArray() {
@@ -65,10 +78,11 @@ public class GridCCS2 implements ISimGrid {
     }
 
     private boolean[] getResult() {
-        boolean[] results = new boolean[1];// TODO: 2/12/15
+        boolean[] results = new boolean[inputCircuit.outputs];
         int lastColumn = cols - 1;
-
-        //cell[2][lastColumn];
+        for (int i = 0; i < inputCircuit.outputs; i++) {
+            results[i] = cell[i][lastColumn].getOutput();
+        }
         return results;
     }
 

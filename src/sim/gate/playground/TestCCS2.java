@@ -1,18 +1,95 @@
 package sim.gate.playground;
 
+import sim.gate.cell.CellWithInputMux;
+import sim.gate.cell.gate.EGate;
+import sim.gate.grid.CCS2Configuration;
 import sim.gate.grid.GridCCS2;
 
 public class TestCCS2 implements ITest {
+    GridCCS2 grid;
     @Override
     public void execute() {
         scenario1();
     }
 
     private void scenario1() {
-        // TODO: 2/12/15 test rs latch in ccs2
-        GridCCS2 grid = new GridCCS2();
+        boolean[][] testInput = {
+                //s     r
+                {true, false},
+                {true, true},
+                {false, true},
+                {true, true},
+                {false, false}
+        };
 
-        grid.setupGridDimensions(2, 2);
+        grid = new GridCCS2();
+        CCS2Configuration inputCircuit = rsLatch();
 
+        grid.setupGridDimensions(inputCircuit.rows, inputCircuit.cols);
+        grid.setInputCircuit(inputCircuit);
+        grid.initializeGrid();
+
+        boolean[] result;
+        for (int i = 0; i < testInput.length; i++) {
+            boolean s = testInput[i][0];
+            boolean r = testInput[i][1];
+
+            for (int j = 0; j < 3; j++) {
+                System.out.print(i + ") S:" + s + "  " + "R:" + r);
+
+                result = testCircuit(r, s);
+                System.out.println("\t  Q:" + result[0] + "   Q':" + result[1]);
+            }
+            System.out.println();
+        }
+
+    }
+
+    private boolean[] testCircuit(boolean r, boolean s) {
+        return grid.emulate(new boolean[]{r, s});
+    }
+
+    private CCS2Configuration rsLatch() {
+        CCS2Configuration inputCircuit = new CCS2Configuration();
+
+        inputCircuit.inputs = 2;
+        inputCircuit.outputs = 2;
+        inputCircuit.cols = 2;
+        inputCircuit.rows = 2;
+
+        CellWithInputMux tempCell1 = new CellWithInputMux();
+        tempCell1.selectGate(EGate.TransferA.getGate());
+        tempCell1.mux1SetSelectLinesNumber(1);
+        tempCell1.mux1SetSelectedInput(1);
+        tempCell1.mux2SetSelectLinesNumber(1);
+        tempCell1.mux2SetSelectedInput(0);
+
+        CellWithInputMux tempCell2 = new CellWithInputMux();
+        tempCell2.selectGate(EGate.TransferA.getGate());
+        tempCell2.mux1SetSelectLinesNumber(1);
+        tempCell2.mux1SetSelectedInput(0);
+        tempCell2.mux2SetSelectLinesNumber(1);
+        tempCell2.mux2SetSelectedInput(0);
+
+        CellWithInputMux tempCell3 = new CellWithInputMux();
+        tempCell3.selectGate(EGate.Nor.getGate());
+        tempCell3.mux1SetSelectLinesNumber(1);
+        tempCell3.mux1SetSelectedInput(0);
+        tempCell3.mux2SetSelectLinesNumber(1);
+        tempCell3.mux2SetSelectedInput(0);
+
+        CellWithInputMux tempCell4 = new CellWithInputMux();
+        tempCell4.selectGate(EGate.Nor.getGate());
+        tempCell4.mux1SetSelectLinesNumber(1);
+        tempCell4.mux1SetSelectedInput(0);
+        tempCell4.mux2SetSelectLinesNumber(1);
+        tempCell4.mux2SetSelectedInput(0);
+
+
+        inputCircuit.cell.add(tempCell1);
+        inputCircuit.cell.add(tempCell2);
+        inputCircuit.cell.add(tempCell3);
+        inputCircuit.cell.add(tempCell4);
+        return inputCircuit;
     }
 }

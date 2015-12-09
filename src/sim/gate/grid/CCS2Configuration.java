@@ -2,6 +2,7 @@ package sim.gate.grid;
 
 import sim.gate.cell.CellWithInputMux;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CCS2Configuration {
@@ -10,4 +11,8 @@ public class CCS2Configuration {
     public int cols;
     public int inputs;
     public int outputs;
+
+    public CCS2Configuration() {
+        cell = new ArrayList<>();
+    }
 }
