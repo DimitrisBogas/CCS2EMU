@@ -1,21 +1,17 @@
 package sim.gate.parser;
 
-public class InputValidator {
-    private int inputs;
-    private int gridRows;
-    private int gridCols;
-    private int outputs;
-    private byte[] inputArray;
+import sim.gate.grid.CCS2Configuration;
 
+public class InputValidator {
+    private CCS2Configuration grid;
     private int expectedArraySize;
 
 
     //validates:
     // correct array size
-    // invalid configuration
+    // invalid configuration // TODO: 9/12/15  
     public void calculateExpectedArraySize() {
-        // TODO: 2/12/15
-        expectedArraySize = (gridCols * gridRows) + gridRows + outputs;
+        expectedArraySize = (grid.rows * grid.cols) + grid.rows + grid.outputs;
 
     }
 

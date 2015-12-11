@@ -9,8 +9,8 @@ public class Main {
 
         // Emulator emulator = new EmulatorCCS2();
 
-        ITest test = new TestCCS2();//TestCell();//TestGateConnections();
-        test.execute();
+        ITest test = new TestCCS2();//TestParser();//TestCCS2();//TestCell();//TestGateConnections();
+        test.execute(); // TODO: 9/12/15 fix results
     }
 
 }

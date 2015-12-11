@@ -22,12 +22,7 @@ public class TestCCS2 implements ITest {
                 {false, false}
         };
 
-        grid = new GridCCS2();
-        CCS2Configuration inputCircuit = rsLatch();
-
-        grid.setupGridDimensions(inputCircuit.rows, inputCircuit.cols);
-        grid.setInputCircuit(inputCircuit);
-        grid.initializeGrid();
+        grid = new GridCCS2(rsLatch());
 
         boolean[] result;
         for (int i = 0; i < testInput.length; i++) {
@@ -36,7 +31,6 @@ public class TestCCS2 implements ITest {
 
             for (int j = 0; j < 3; j++) {
                 System.out.print(i + ") S:" + s + "  " + "R:" + r);
-
                 result = testCircuit(r, s);
                 System.out.println("\t  Q:" + result[0] + "   Q':" + result[1]);
             }
@@ -72,14 +66,14 @@ public class TestCCS2 implements ITest {
         tempCell2.mux2SetSelectedInput(0);
 
         CellWithInputMux tempCell3 = new CellWithInputMux();
-        tempCell3.selectGate(EGate.Nor.getGate());
+        tempCell3.selectGate(EGate.Nand.getGate());
         tempCell3.mux1SetSelectLinesNumber(1);
         tempCell3.mux1SetSelectedInput(0);
         tempCell3.mux2SetSelectLinesNumber(1);
         tempCell3.mux2SetSelectedInput(0);
 
         CellWithInputMux tempCell4 = new CellWithInputMux();
-        tempCell4.selectGate(EGate.Nor.getGate());
+        tempCell4.selectGate(EGate.Nand.getGate());
         tempCell4.mux1SetSelectLinesNumber(1);
         tempCell4.mux1SetSelectedInput(0);
         tempCell4.mux2SetSelectLinesNumber(1);
