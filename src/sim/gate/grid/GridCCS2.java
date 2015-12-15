@@ -31,9 +31,9 @@ public class GridCCS2 implements ISimGrid {
 
     private void configureGrid() {
         int x = 0;
-        for (int i = 0; i < config.rows; i++) {
-            for (int j = 0; j < config.cols; j++) {
-                cell[i][j] = config.cell.get(x++);
+        for (int row = 0; row < config.rows; row++) {
+            for (int col = 0; col < config.cols; col++) {
+                cell[row][col] = config.cell.get(x++);
             }
         }
     }
@@ -79,15 +79,15 @@ public class GridCCS2 implements ISimGrid {
     private void everyOtherColumn() {
         int secondColumn = 1;
 
-        for (int i = 0; i < config.rows; i++) {
-            for (int j = secondColumn; j < config.cols; j++) {
-                cell[i][j].mux1SetInputs(new boolean[]{
-                        cell[muxA1Row(i)][muxA1Col(j)].getOutput(),
-                        cell[muxA2Row(i)][muxA2Col(j)].getOutput()
+        for (int row = 0; row < config.rows; row++) {
+            for (int col = secondColumn; col < config.cols; col++) {
+                cell[row][col].mux1SetInputs(new boolean[]{
+                        cell[muxA1Row(row)][muxA1Col(col)].getOutput(),
+                        cell[muxA2Row(row)][muxA2Col(col)].getOutput()
                 });
-                cell[i][j].mux2SetInputs(new boolean[]{
-                        cell[muxB1Row(i)][muxB1Col(j)].getOutput(),
-                        cell[muxB2Row(i)][muxB2Col(j)].getOutput()
+                cell[row][col].mux2SetInputs(new boolean[]{
+                        cell[muxB1Row(row)][muxB1Col(col)].getOutput(),
+                        cell[muxB2Row(row)][muxB2Col(col)].getOutput()
                 });
             }
         }
@@ -105,8 +105,8 @@ public class GridCCS2 implements ISimGrid {
         int i;
         if (row - 1 < 0) {
             i = config.rows - 1; // cylindrical grid
-        } else {         //if < 0 then go to the bottom line
-            i = row - 1;
+        } else { // if < 0 then go to the bottom line
+            i = row - 1; // else return the upper row
         }
         return i;
     }

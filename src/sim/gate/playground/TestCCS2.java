@@ -29,10 +29,10 @@ public class TestCCS2 implements ITest {
             boolean s = testInput[i][0];
             boolean r = testInput[i][1];
 
-            for (int j = 0; j < 3; j++) {
-                System.out.print(i + ") S:" + s + "  " + "R:" + r);
+            for (int j = 0; j < 5; j++) {
+                System.out.print(i + ") \tS:" + (s ? 1 : 0) + "  R:" + (r ? 1 : 0));
                 result = testCircuit(r, s);
-                System.out.println("\t  Q:" + result[0] + "   Q':" + result[1]);
+                System.out.println("\t Q:" + (result[0] ? 1 : 0) + "  Q':" + (result[1] ? 1 : 0));
             }
             System.out.println();
         }
