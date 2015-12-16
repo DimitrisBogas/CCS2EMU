@@ -89,7 +89,7 @@ public class DataParserCCS2 {
         return (byte) ((var >> 4) & 0b00001111);
     }
 
-    private byte cell4Bit(byte var) {
+    public byte cell4Bit(byte var) {
         return (byte) (var & 0b00001111);
     }
 

@@ -81,16 +81,38 @@ public class GridCCS2 implements ISimGrid {
 
         for (int row = 0; row < config.rows; row++) {
             for (int col = secondColumn; col < config.cols; col++) {
-                cell[row][col].mux1SetInputs(new boolean[]{
-                        cell[muxA1Row(row)][muxA1Col(col)].getOutput(),
-                        cell[muxA2Row(row)][muxA2Col(col)].getOutput()
-                });
-                cell[row][col].mux2SetInputs(new boolean[]{
-                        cell[muxB1Row(row)][muxB1Col(col)].getOutput(),
-                        cell[muxB2Row(row)][muxB2Col(col)].getOutput()
-                });
+                boolean[] mux1 = mux1Inputs(row, col);
+                boolean[] mux2 = mux2Inputs(row, col);
+                cell[row][col].mux1SetInputs(mux1);
+                cell[row][col].mux2SetInputs(mux2);
+                //cell[row][col].mux1SetInputs(mux1Inputs(row, col));
+                //cell[row][col].mux2SetInputs(mux2Inputs(row, col));
             }
         }
+    }
+
+    private boolean[] mux1Inputs(int row, int col) {
+        return new boolean[]{muxA1(row, col), muxA2(row, col)};
+    }
+
+    private boolean[] mux2Inputs(int row, int col) {
+        return new boolean[]{muxB1(row, col), muxB2(row, col)};
+    }
+
+    private boolean muxA1(int row, int col) {
+        return cell[muxA1Row(row)][muxA1Col(col)].getOutput();
+    }
+
+    private boolean muxA2(int row, int col) {
+        return cell[muxA2Row(row)][muxA2Col(col)].getOutput();
+    }
+
+    private boolean muxB1(int row, int col) {
+        return cell[muxB1Row(row)][muxB1Col(col)].getOutput();
+    }
+
+    private boolean muxB2(int row, int col) {
+        return cell[muxB2Row(row)][muxB2Col(col)].getOutput();
     }
 
     private void firstCol(boolean[] input) {

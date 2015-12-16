@@ -54,29 +54,29 @@ public class TestCCS2 implements ITest {
         CellWithInputMux tempCell1 = new CellWithInputMux();
         tempCell1.selectGate(EGate.TransferA.getGate());
         tempCell1.mux1SetSelectLinesNumber(1);
-        tempCell1.mux1SetSelectedInput(1);
         tempCell1.mux2SetSelectLinesNumber(1);
+        tempCell1.mux1SetSelectedInput(1);
         tempCell1.mux2SetSelectedInput(0);
 
         CellWithInputMux tempCell2 = new CellWithInputMux();
         tempCell2.selectGate(EGate.TransferA.getGate());
         tempCell2.mux1SetSelectLinesNumber(1);
-        tempCell2.mux1SetSelectedInput(0);
         tempCell2.mux2SetSelectLinesNumber(1);
+        tempCell2.mux1SetSelectedInput(0);
         tempCell2.mux2SetSelectedInput(0);
 
         CellWithInputMux tempCell3 = new CellWithInputMux();
         tempCell3.selectGate(EGate.Nand.getGate());
         tempCell3.mux1SetSelectLinesNumber(1);
-        tempCell3.mux1SetSelectedInput(0);
         tempCell3.mux2SetSelectLinesNumber(1);
+        tempCell3.mux1SetSelectedInput(0);
         tempCell3.mux2SetSelectedInput(0);
 
         CellWithInputMux tempCell4 = new CellWithInputMux();
         tempCell4.selectGate(EGate.Nand.getGate());
         tempCell4.mux1SetSelectLinesNumber(1);
-        tempCell4.mux1SetSelectedInput(0);
         tempCell4.mux2SetSelectLinesNumber(1);
+        tempCell4.mux1SetSelectedInput(0);
         tempCell4.mux2SetSelectedInput(0);
 
 
