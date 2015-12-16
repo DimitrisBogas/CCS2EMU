@@ -10,9 +10,8 @@ public class InputValidator {
     //validates:
     // correct array size
     // invalid configuration // TODO: 9/12/15  
-    public void calculateExpectedArraySize() {
-        expectedArraySize = (grid.rows * grid.cols) + grid.rows + grid.outputs;
-
+    public int calculateExpectedArraySize() {
+        return (grid.rows * grid.cols) + grid.rows + grid.outputs;
     }
 
     public void checkForInvalidConfiguration() {

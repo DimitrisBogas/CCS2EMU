@@ -22,26 +22,26 @@ public class DataParserCCS2 {
             // only fist cell uses 2 bytes
             tempCell.mux1SetSelectLinesNumber(calculateSelectLinesNumberFromInputs(configuration.inputs));
             tempCell.mux2SetSelectLinesNumber(calculateSelectLinesNumberFromInputs(configuration.inputs));
-            tempCell.mux1SetSelectedInput(Bitwise.inputMuxA4Bit(dataInput[j]));
-            tempCell.mux2SetSelectedInput(Bitwise.inputMuxB4Bit(dataInput[j]));
+            tempCell.mux1SetSelectedInput(inputMuxA4Bit(dataInput[j]));
+            tempCell.mux2SetSelectedInput(inputMuxB4Bit(dataInput[j]));
             j++;
-            tempCell.selectGate(Bitwise.cell4Bit(dataInput[j]));
+            tempCell.selectGate(cell4Bit(dataInput[j]));
             configuration.cell.add(tempCell);
 
             for (j++; j < (configuration.cols + 1) * i; j++) { // every other uses 1 byte
                 tempCell.mux1SetSelectLinesNumber(1); // 1 by the ccs2 hardware implementation
                 tempCell.mux2SetSelectLinesNumber(1);
-                tempCell.mux1SetSelectedInput(Bitwise.inputMuxA2Bit(dataInput[j]));
-                tempCell.mux2SetSelectedInput(Bitwise.inputMuxB2Bit(dataInput[j]));
-                tempCell.selectGate(Bitwise.cell4Bit(dataInput[j]));
+                tempCell.mux1SetSelectedInput(inputMuxA2Bit(dataInput[j]));
+                tempCell.mux2SetSelectedInput(inputMuxB2Bit(dataInput[j]));
+                tempCell.selectGate(cell4Bit(dataInput[j]));
                 configuration.cell.add(tempCell);
             }
         }
         configuration.outMux = new int[configuration.outputs]; // outputs
-        for (int i = 0; i < configuration.outputs; i++) {
-            configuration.outMux[i] = dataInput[i];
-        }
-        //System.arraycopy(dataInput, 0, configuration.outMux, 0, configuration.outputs);
+//        for (int i = 0; i < configuration.outputs; i++) {
+//            configuration.outMux[i] = dataInput[i];
+//        }
+        System.arraycopy(dataInput, 0, configuration.outMux, 0, configuration.outputs);
 
         return configuration;
     }
@@ -79,6 +79,26 @@ public class DataParserCCS2 {
 
     public void setDataInput(int[] dataInput) {
         this.dataInput = dataInput;
+    }
+
+    private int inputMuxA4Bit(int var) {
+        return Bitwise.returnThe4LowBits(var);
+    }
+
+    private int inputMuxB4Bit(int var) {
+        return Bitwise.shift4AndReturnThe4LowBits(var);
+    }
+
+    private int cell4Bit(int var) {
+        return Bitwise.returnThe4LowBits(var);
+    }
+
+    private int inputMuxA2Bit(int var) {
+        return Bitwise.shift4AndReturnThe2LowBits(var);
+    }
+
+    private int inputMuxB2Bit(int var) {
+        return Bitwise.shift6AndReturnThe2LowBits(var);
     }
 
     private int output(int var) {
