@@ -66,7 +66,9 @@ public class DataParserCCS2 {
 
     private void validateInput() {
         assert (!(dataInput == null || configuration == null));
+        assert (configuration.outMux == null);
         assert ((configuration.cols >= 1 && configuration.rows >= 1));
+        assert (configuration.inputs >= 1 && configuration.outputs >= 1);
     }
 
     public CCS2Configuration getConfiguration() {
@@ -105,8 +107,5 @@ public class DataParserCCS2 {
         return Bitwise.highNibbleHighSemiNibble(var);
     }
 
-    private int output(int var) {
-        return var;
-    }
 
 }
