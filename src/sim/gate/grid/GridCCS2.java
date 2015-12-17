@@ -4,46 +4,36 @@ import sim.gate.cell.CellWithInputMux;
 
 
 public class GridCCS2 implements ISimGrid {
-    private int rows;
-    private int cols;
     private CellWithInputMux[][] cell;
-    private CCS2Configuration inputCircuit;
+    private CCS2Configuration config;
 
     public GridCCS2() {
-        rows = 0;
-        cols = 0;
+
     }
 
-    public GridCCS2(int rows, int cols) {
-        setupGridDimensions(rows, cols);
-        //initializeGrid();
+    public GridCCS2(CCS2Configuration config) {
+        setConfig(config);
     }
 
-    public CCS2Configuration getInputCircuit() {
-        return inputCircuit;
-    }
-
-    public void setInputCircuit(CCS2Configuration inputCircuit) {
-        this.inputCircuit = inputCircuit;
-    }
-
-    @Override
-    public void setupGridDimensions(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
-        //initializeGrid();
-    }
-
-    @Override
-    public void initializeGrid() {
+    private void initializeGrid() {
         initializeArray();
         configureGrid();
     }
 
+    public CCS2Configuration getConfig() {
+        return config;
+    }
+
+    public void setConfig(CCS2Configuration config) {
+        this.config = config;
+        initializeGrid();
+    }
+
     private void configureGrid() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                cell[i][j] = inputCircuit.cell.iterator().next();
+        int x = 0;
+        for (int row = 0; row < config.rows; row++) {
+            for (int col = 0; col < config.cols; col++) {
+                cell[row][col] = config.cell.get(x++);
             }
         }
     }
@@ -51,9 +41,9 @@ public class GridCCS2 implements ISimGrid {
     private void initializeArray() {
         assert (isDimensionSet());
 
-        cell = new CellWithInputMux[rows][cols];
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        cell = new CellWithInputMux[config.rows][config.cols];
+        for (int i = 0; i < config.rows; i++) {
+            for (int j = 0; j < config.cols; j++) {
                 cell[i][j] = new CellWithInputMux();
             }
         }
@@ -64,11 +54,11 @@ public class GridCCS2 implements ISimGrid {
     }
 
     private boolean isRowsSet() {
-        return rows > 0;
+        return config.rows > 0;
     }
 
     private boolean isColsSet() {
-        return cols > 0;
+        return config.cols > 0;
     }
 
     public boolean[] emulate(boolean[] evaluationInput) {
@@ -78,10 +68,10 @@ public class GridCCS2 implements ISimGrid {
     }
 
     private boolean[] getResult() {
-        boolean[] results = new boolean[inputCircuit.outputs];
-        int lastColumn = cols - 1;
-        for (int i = 0; i < inputCircuit.outputs; i++) {
-            results[i] = cell[i][lastColumn].getOutput();
+        boolean[] results = new boolean[config.outputs];
+        int lastColumn = config.cols - 1;
+        for (int i = 0; i < config.outputs; i++) {
+            results[i] = cell[config.outMux[i]][lastColumn].getOutput();
         }
         return results;
     }
@@ -89,23 +79,45 @@ public class GridCCS2 implements ISimGrid {
     private void everyOtherColumn() {
         int secondColumn = 1;
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = secondColumn; j < cols; j++) {
-                cell[i][j].mux1SetInputs(new boolean[]{
-                        cell[muxA1Row(i)][muxA1Col(j)].getOutput(),
-                        cell[muxA2Row(i)][muxA2Col(j)].getOutput()
-                });
-                cell[i][j].mux2SetInputs(new boolean[]{
-                        cell[muxB1Row(i)][muxB1Col(j)].getOutput(),
-                        cell[muxB2Row(i)][muxB2Col(j)].getOutput()
-                });
+        for (int row = 0; row < config.rows; row++) {
+            for (int col = secondColumn; col < config.cols; col++) {
+                boolean[] mux1 = mux1Inputs(row, col);
+                boolean[] mux2 = mux2Inputs(row, col);
+                cell[row][col].mux1SetInputs(mux1);
+                cell[row][col].mux2SetInputs(mux2);
+                //cell[row][col].mux1SetInputs(mux1Inputs(row, col));
+                //cell[row][col].mux2SetInputs(mux2Inputs(row, col));
             }
         }
     }
 
+    private boolean[] mux1Inputs(int row, int col) {
+        return new boolean[]{muxA1(row, col), muxA2(row, col)};
+    }
+
+    private boolean[] mux2Inputs(int row, int col) {
+        return new boolean[]{muxB1(row, col), muxB2(row, col)};
+    }
+
+    private boolean muxA1(int row, int col) {
+        return cell[muxA1Row(row)][muxA1Col(col)].getOutput();
+    }
+
+    private boolean muxA2(int row, int col) {
+        return cell[muxA2Row(row)][muxA2Col(col)].getOutput();
+    }
+
+    private boolean muxB1(int row, int col) {
+        return cell[muxB1Row(row)][muxB1Col(col)].getOutput();
+    }
+
+    private boolean muxB2(int row, int col) {
+        return cell[muxB2Row(row)][muxB2Col(col)].getOutput();
+    }
+
     private void firstCol(boolean[] input) {
         int firstColumn = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < config.rows; i++) {
             cell[i][firstColumn].mux1SetInputs(input);
             cell[i][firstColumn].mux2SetInputs(input);
         }
@@ -114,9 +126,9 @@ public class GridCCS2 implements ISimGrid {
     private int muxA1Row(int row) {
         int i;
         if (row - 1 < 0) {
-            i = rows - 1; // cylindrical grid
-        } else {         //if < 0 then go to the bottom line
-            i = row - 1;
+            i = config.rows - 1; // cylindrical grid
+        } else { // if < 0 then go to the bottom line
+            i = row - 1; // else return the upper row
         }
         return i;
     }
@@ -143,7 +155,7 @@ public class GridCCS2 implements ISimGrid {
 
     private int muxB2Row(int row) {
         int i;
-        if (row + 1 >= rows) { // if there is not next line
+        if (row + 1 >= config.rows) { // if there is not next line
             i = 0; // go to the first
         } else {
             i = row + 1;
@@ -154,7 +166,5 @@ public class GridCCS2 implements ISimGrid {
     private int muxB2Col(int col) {
         return col - 1;
     }
-
-
 
 }

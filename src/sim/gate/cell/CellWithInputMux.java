@@ -90,4 +90,9 @@ public class CellWithInputMux {
         return mux2.getOutput();
     }
 
+    @Override
+    public String toString() {
+        return cell.toString() + " muxA:" + mux1.toString() + " muxB:" + mux2.toString();
+    }
+
 }
