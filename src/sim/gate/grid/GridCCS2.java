@@ -71,7 +71,7 @@ public class GridCCS2 implements ISimGrid {
         boolean[] results = new boolean[config.outputs];
         int lastColumn = config.cols - 1;
         for (int i = 0; i < config.outputs; i++) {
-            results[i] = cell[i][lastColumn].getOutput();
+            results[i] = cell[config.outMux[i]][lastColumn].getOutput();
         }
         return results;
     }

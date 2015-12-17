@@ -16,4 +16,13 @@ public class CCS2Configuration {
     public CCS2Configuration() {
         cell = new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        String out = "";
+        for (CellWithInputMux temp : cell) {
+            out += temp.toString() + "\n";
+        }
+        return out;
+    }
 }

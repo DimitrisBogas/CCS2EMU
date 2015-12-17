@@ -14,7 +14,7 @@ public class TestParser implements ITest {
     }
 
     private void scenario1() {
-        int[] inputString = {1, 10, 71, 0, 10, 7, 0, 1};
+        int[] inputString = {1, 10, 71, 0, 10, 7, 1, 0};
 
         CCS2Configuration conf = new CCS2Configuration();
         conf.inputs = 2;
