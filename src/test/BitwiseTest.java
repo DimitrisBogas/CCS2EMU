@@ -19,154 +19,115 @@ public class BitwiseTest {
 
     }
 
-
     @Test
-    public void testInputMuxB2BitShouldReturn0() throws Exception {
+    public void testHighNibbleHighSemiNibbleShouldReturn0() throws Exception {
         int input = 0b00110000;
         int expected = 0b00000000;
-        int actual = Bitwise.shift6AndReturnThe2LowBits(input);
+        int actual = Bitwise.highNibbleHighSemiNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxB2BitShouldReturn1() throws Exception {
+    public void testHighNibbleHighSemiNibbleShouldReturn1() throws Exception {
         int input = 0b01100000;
         int expected = 0b00000001;
-        int actual = Bitwise.shift6AndReturnThe2LowBits(input);
+        int actual = Bitwise.highNibbleHighSemiNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxB2BitShouldReturn3() throws Exception {
+    public void testHighNibbleHighSemiNibbleShouldReturn3() throws Exception {
         int input = -1;
         int expected = 0b00000011;
-        int actual = Bitwise.shift6AndReturnThe2LowBits(input);
+        int actual = Bitwise.highNibbleHighSemiNibble(input);
         assertEquals(expected, actual);
     }
 
+
     @Test
-    public void testCell4BitShouldReturn2() {
+    public void testLowNibbleShouldReturn2() {
         int input = 2;
         int expected = 2;
-        int actual = Bitwise.returnThe4LowBits(input);
+        int actual = Bitwise.lowNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCell4BitShouldReturn10() {
+    public void testLowNibbleShouldReturn10() {
         int input = 0b01101010;
         int expected = 0b00001010;
-        int actual = Bitwise.returnThe4LowBits(input);
+        int actual = Bitwise.lowNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCell4BitShouldReturn15() {
+    public void testLowNibbleShouldReturn15() {
         int input = -1;
         int expected = 0b00001111;
-        int actual = Bitwise.returnThe4LowBits(input);
+        int actual = Bitwise.lowNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCell4BitShouldReturn14() {
+    public void testLowNibbleShouldReturn14() {
         int input = -2;
         int expected = 0b00001110;
-        int actual = Bitwise.returnThe4LowBits(input);
+        int actual = Bitwise.lowNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCell4BitShouldNotAssert() {
+    public void testLowNibbleShouldNotAssert() {
         for (int i = 0; i < 256 + 2; i++) {
-            assertEquals(i % 16, Bitwise.returnThe4LowBits(i));
+            assertEquals(i % 16, Bitwise.lowNibble(i));
         }
     }
 
     @Test
-    public void testInputMuxA4BitShouldReturn2() {
-        int input = 2;
-        int expected = 2;
-        int actual = Bitwise.returnThe4LowBits(input);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testInputMuxA4BitShouldReturn10() {
-        int input = 0b01101010;
-        int expected = 0b00001010;
-        int actual = Bitwise.returnThe4LowBits(input);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testInputMuxA4BitShouldReturn15() {
-        int input = -1;
-        int expected = 0b00001111;
-        int actual = Bitwise.returnThe4LowBits(input);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testInputMuxA4BitShouldReturn14() {
-        int input = -2;
-        int expected = 0b00001110;
-        int actual = Bitwise.returnThe4LowBits(input);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testInputMuxA4BitShouldNotAssert() {
-        for (int i = 0; i < 256 + 2; i++) {
-            assertEquals(i % 16, Bitwise.returnThe4LowBits(i));
-        }
-    }
-
-    @Test
-    public void testInputMuxA2BitShouldReturn0() throws Exception {
+    public void testHighNibbleLowSemiNibbleShouldReturn0() throws Exception {
         int input = 0b11001111;
         int expected = 0b00000000;
-        int actual = Bitwise.shift4AndReturnThe2LowBits(input);
+        int actual = Bitwise.highNibbleLowSemiNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxA2BitShouldReturn2() throws Exception {
+    public void testHighNibbleLowSemiNibbleShouldReturn2() throws Exception {
         int input = 0b01100000;
         int expected = 0b00000010;
-        int actual = Bitwise.shift4AndReturnThe2LowBits(input);
+        int actual = Bitwise.highNibbleLowSemiNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxA2BitShouldReturn3() throws Exception {
+    public void testHighNibbleLowSemiNibbleShouldReturn3() throws Exception {
         int input = -1;
         int expected = 0b00000011;
-        int actual = Bitwise.shift4AndReturnThe2LowBits(input);
+        int actual = Bitwise.highNibbleLowSemiNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxB4BitShouldReturn2() throws Exception {
+    public void testHighNibbleShouldReturn2() throws Exception {
         int input = 0b00100000;
         int expected = 0b00000010;
-        int actual = Bitwise.shift4AndReturnThe4LowBits(input);
+        int actual = Bitwise.highNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxB4BitShouldReturn8() throws Exception {
+    public void testHighNibbleShouldReturn8() throws Exception {
         int input = 0b10000000;
         int expected = 0b00001000;
-        int actual = Bitwise.shift4AndReturnThe4LowBits(input);
+        int actual = Bitwise.highNibble(input);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testInputMuxB4BitShouldReturn15() throws Exception {
+    public void testHighNibbleShouldReturn15() throws Exception {
         int input = -2;
         int expected = 0b00001111;
-        int actual = Bitwise.shift4AndReturnThe4LowBits(input);
+        int actual = Bitwise.highNibble(input);
         assertEquals(expected, actual);
     }
 }
