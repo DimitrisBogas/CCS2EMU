@@ -21,7 +21,7 @@ public class BitwiseTest {
 
     @Test
     public void testHighNibbleHighSemiNibbleShouldReturn0() throws Exception {
-        int input = 0b00110000;
+        int input = 0b00111111;
         int expected = 0b00000000;
         int actual = Bitwise.highNibbleHighSemiNibble(input);
         assertEquals(expected, actual);
@@ -29,8 +29,16 @@ public class BitwiseTest {
 
     @Test
     public void testHighNibbleHighSemiNibbleShouldReturn1() throws Exception {
-        int input = 0b01100000;
+        int input = 0b01111111;
         int expected = 0b00000001;
+        int actual = Bitwise.highNibbleHighSemiNibble(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testHighNibbleHighSemiNibbleShouldReturn2() throws Exception {
+        int input = 0b10000000;
+        int expected = 0b00000010;
         int actual = Bitwise.highNibbleHighSemiNibble(input);
         assertEquals(expected, actual);
     }
@@ -43,7 +51,6 @@ public class BitwiseTest {
         assertEquals(expected, actual);
     }
 
-
     @Test
     public void testLowNibbleShouldReturn2() {
         int input = 2;
@@ -54,7 +61,7 @@ public class BitwiseTest {
 
     @Test
     public void testLowNibbleShouldReturn10() {
-        int input = 0b01101010;
+        int input = 0b11111010;
         int expected = 0b00001010;
         int actual = Bitwise.lowNibble(input);
         assertEquals(expected, actual);
@@ -119,6 +126,14 @@ public class BitwiseTest {
     public void testHighNibbleShouldReturn8() throws Exception {
         int input = 0b10000000;
         int expected = 0b00001000;
+        int actual = Bitwise.highNibble(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testHighNibbleShouldReturn9() throws Exception {
+        int input = 0b10010000;
+        int expected = 0b00001001;
         int actual = Bitwise.highNibble(input);
         assertEquals(expected, actual);
     }
