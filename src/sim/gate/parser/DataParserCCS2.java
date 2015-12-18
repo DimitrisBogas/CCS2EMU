@@ -30,6 +30,11 @@ public class DataParserCCS2 {
         return configuration;
     }
 
+    public CCS2Configuration parse(int[] dataInput) {
+        setDataInput(dataInput);
+        return parse();
+    }
+
     private CellWithInputMux firstColumnCell(int firstVar, int secondVar) {
         CellWithInputMux cell = new CellWithInputMux();
         cell.mux1SetSelectLinesNumber(calculateSelectLinesNumberFromInputs(configuration.inputs));

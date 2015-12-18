@@ -1,8 +1,7 @@
 package sim.gate;
 
 import sim.gate.playground.ITest;
-import sim.gate.playground.TestCCS2;
-import sim.gate.playground.TestParser;
+import sim.gate.playground.TestEmulator;
 
 public class Main {
 
@@ -10,8 +9,8 @@ public class Main {
 
         // Emulator emulator = new EmulatorCCS2();
 
-        ITest test = new TestParser();//TestCCS2();//TestRsLatchWithNand();//TestCCS2();
-        test.execute(); // TODO: 9/12/15 fix results
+        ITest test = new TestEmulator();//TestParser();//TestCCS2();//TestRsLatchWithNand();
+        test.execute();
     }
 
 }
