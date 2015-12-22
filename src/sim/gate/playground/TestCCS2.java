@@ -2,7 +2,7 @@ package sim.gate.playground;
 
 import sim.gate.cell.CellWithInputMux;
 import sim.gate.cell.gate.EGate;
-import sim.gate.grid.CCS2Configuration;
+import sim.gate.grid.CCS2CircuitConfiguration;
 import sim.gate.grid.GridCCS2;
 
 public class TestCCS2 implements ITest {
@@ -43,8 +43,8 @@ public class TestCCS2 implements ITest {
         return grid.emulate(new boolean[]{r, s});
     }
 
-    private CCS2Configuration rsLatch() {
-        CCS2Configuration inputCircuit = new CCS2Configuration();
+    private CCS2CircuitConfiguration rsLatch() {
+        CCS2CircuitConfiguration inputCircuit = new CCS2CircuitConfiguration();
 
         inputCircuit.inputs = 2;
         inputCircuit.outputs = 2;

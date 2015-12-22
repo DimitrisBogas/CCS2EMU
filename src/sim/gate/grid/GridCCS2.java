@@ -5,13 +5,13 @@ import sim.gate.cell.CellWithInputMux;
 
 public class GridCCS2 implements ISimGrid {
     private CellWithInputMux[][] cell;
-    private CCS2Configuration config;
+    private CCS2CircuitConfiguration config;
 
     public GridCCS2() {
 
     }
 
-    public GridCCS2(CCS2Configuration config) {
+    public GridCCS2(CCS2CircuitConfiguration config) {
         setConfig(config);
     }
 
@@ -20,11 +20,11 @@ public class GridCCS2 implements ISimGrid {
         configureGrid();
     }
 
-    public CCS2Configuration getConfig() {
+    public CCS2CircuitConfiguration getConfig() {
         return config;
     }
 
-    public void setConfig(CCS2Configuration config) {
+    public void setConfig(CCS2CircuitConfiguration config) {
         this.config = config;
         initializeGrid();
     }

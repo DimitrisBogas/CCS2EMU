@@ -1,13 +1,13 @@
 package sim.gate.emulator;
 
-import sim.gate.grid.CCS2Configuration;
+import sim.gate.grid.CCS2CircuitConfiguration;
 import sim.gate.grid.GridCCS2;
 import sim.gate.parser.DataParserCCS2;
 
 public class EmulatorCCS2 {
     private GridCCS2 simGrid;
     private DataParserCCS2 parser;
-    private CCS2Configuration config;
+    private CCS2CircuitConfiguration config;
     private boolean[][] testPattern;
     private boolean[][] expectedOutput;
     private boolean[][][] results;
@@ -16,7 +16,7 @@ public class EmulatorCCS2 {
 
     public EmulatorCCS2() {
         simGrid = new GridCCS2();
-        config = new CCS2Configuration();
+        config = new CCS2CircuitConfiguration();
         iterationDepth = 1;
     }
 
@@ -78,9 +78,7 @@ public class EmulatorCCS2 {
 
         for (int i = 0; i < testPattern.length; i++) {
             for (int j = 0; j < iterationDepth; j++) {
-                boolean[] temp;
-                temp = simGrid.emulate(testPattern[i]);
-                results[i][j] = temp;
+                results[i][j] = simGrid.emulate(testPattern[i]);
             }
         }
     }

@@ -1,9 +1,9 @@
 package sim.gate.parser;
 
-import sim.gate.grid.CCS2Configuration;
+import sim.gate.grid.CCS2CircuitConfiguration;
 
 public class InputValidator {
-    private CCS2Configuration grid;
+    private CCS2CircuitConfiguration grid;
     private int expectedArraySize;
 
 

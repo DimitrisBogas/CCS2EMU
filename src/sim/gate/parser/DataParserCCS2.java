@@ -1,18 +1,18 @@
 package sim.gate.parser;
 
 import sim.gate.cell.CellWithInputMux;
-import sim.gate.grid.CCS2Configuration;
+import sim.gate.grid.CCS2CircuitConfiguration;
 
 public class DataParserCCS2 {
 
     private int[] dataInput;
-    private CCS2Configuration configuration;
+    private CCS2CircuitConfiguration configuration;
 
-    public DataParserCCS2(CCS2Configuration configuration) {
+    public DataParserCCS2(CCS2CircuitConfiguration configuration) {
         this.configuration = configuration;
     }
 
-    public CCS2Configuration parse() {
+    public CCS2CircuitConfiguration parse() {
         validateInput();
 
         int j = 0;
@@ -30,7 +30,7 @@ public class DataParserCCS2 {
         return configuration;
     }
 
-    public CCS2Configuration parse(int[] dataInput) {
+    public CCS2CircuitConfiguration parse(int[] dataInput) {
         setDataInput(dataInput);
         return parse();
     }
@@ -76,11 +76,11 @@ public class DataParserCCS2 {
         assert (configuration.inputs >= 1 && configuration.outputs >= 1);
     }
 
-    public CCS2Configuration getConfiguration() {
+    public CCS2CircuitConfiguration getConfiguration() {
         return configuration;
     }
 
-    public void setConfiguration(CCS2Configuration configuration) {
+    public void setConfiguration(CCS2CircuitConfiguration configuration) {
         this.configuration = configuration;
     }
 

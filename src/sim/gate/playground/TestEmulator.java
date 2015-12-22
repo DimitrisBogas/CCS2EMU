@@ -16,6 +16,9 @@ public class TestEmulator implements ITest {
         int outputs = 2;
         int rows = 2;
         int cols = 2;
+        int iterationDepth = 3;
+        int iterationDepthEvaluation = 1;
+
 
         boolean[][] testInput = {
                 //s     r
@@ -38,11 +41,25 @@ public class TestEmulator implements ITest {
         emulator.setCircuitParameters(inputs, outputs, rows, cols);
         emulator.setTestPattern(testInput);
         emulator.setExpectedOutput(expectedOutput);
-        emulator.setIterationDepth(3);
-        emulator.setIterationDepthEvaluation(2);
+        emulator.setIterationDepth(iterationDepth);
+        emulator.setIterationDepthEvaluation(iterationDepthEvaluation);
+
 
         int hammingDistance = emulator.evaluate(inputString);
+        print3DArray(emulator.getResults(), testInput.length, iterationDepth, outputs);
         System.out.println("hammingDistance = " + hammingDistance);
 
+    }
+
+    private void print3DArray(boolean[][][] array, int x, int y, int z) {
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                for (int k = 0; k < z; k++) {
+                    System.out.printf("[%d][%d][%d] = %b \t", i, j, k, array[i][j][k]);
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
     }
 }

@@ -1,6 +1,6 @@
 package sim.gate.playground;
 
-import sim.gate.grid.CCS2Configuration;
+import sim.gate.grid.CCS2CircuitConfiguration;
 import sim.gate.grid.GridCCS2;
 import sim.gate.parser.DataParserCCS2;
 
@@ -16,7 +16,7 @@ public class TestParser implements ITest {
     private void scenario1() {
         int[] inputString = {1, 10, 71, 0, 10, 7, 1, 0};
 
-        CCS2Configuration conf = new CCS2Configuration();
+        CCS2CircuitConfiguration conf = new CCS2CircuitConfiguration();
         conf.inputs = 2;
         conf.outputs = 2;
         conf.rows = 2;

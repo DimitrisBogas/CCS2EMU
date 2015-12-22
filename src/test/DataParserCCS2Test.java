@@ -1,15 +1,15 @@
 package test;
 
-import sim.gate.grid.CCS2Configuration;
+import sim.gate.grid.CCS2CircuitConfiguration;
 import sim.gate.parser.DataParserCCS2;
 
 public class DataParserCCS2Test {
     private DataParserCCS2 parser;
-    private CCS2Configuration config;
+    private CCS2CircuitConfiguration config;
 
     @org.junit.Before
     public void setUp() throws Exception {
-        config = new CCS2Configuration();
+        config = new CCS2CircuitConfiguration();
         parser = new DataParserCCS2(config);
     }
 
